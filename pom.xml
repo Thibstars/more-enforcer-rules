@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>custom-rule</module>
+        <module>meta-rule</module>
         <module>rule-usage</module>
     </modules>
 

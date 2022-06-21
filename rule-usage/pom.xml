@@ -13,6 +13,9 @@
 
     <artifactId>rule-usage</artifactId>
 
+    <name>rule-usage</name>
+    <description>Sample project triggering custom rules.</description>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -28,7 +31,7 @@
                     <dependencies>
                         <dependency>
                             <groupId>com.github.thibstars</groupId>
-                            <artifactId>custom-rule</artifactId>
+                            <artifactId>meta-rule</artifactId>
                             <version>1.0-SNAPSHOT</version>
                         </dependency>
                     </dependencies>
@@ -51,9 +54,10 @@
                 </executions>
                 <configuration>
                     <rules>
-                        <myCustomRule implementation="com.github.thibstars.custom_rule.MyCustomRule">
-                            <fail>false</fail>
-                        </myCustomRule>
+                        <metaRule implementation="com.github.thibstars.meta.MetaRule">
+                            <namePresent>true</namePresent>
+                            <descriptionPresent>true</descriptionPresent>
+                        </metaRule>
                     </rules>
                 </configuration>
             </plugin>
