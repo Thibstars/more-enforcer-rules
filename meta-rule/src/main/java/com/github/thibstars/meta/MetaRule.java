@@ -13,6 +13,9 @@ import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluatio
  */
 public class MetaRule implements EnforcerRule {
 
+    protected static final String PROJECT_NAME_EVAL = "${project.name}";
+    protected static final String PROJECT_DESCRIPTION_EVAL = "${project.description}";
+
     private boolean namePresent = false;
     private boolean descriptionPresent = false;
 
@@ -21,8 +24,8 @@ public class MetaRule implements EnforcerRule {
         Log log = helper.getLog();
 
         try {
-            String name = (String) helper.evaluate("${project.name}");
-            String description = (String) helper.evaluate("${project.description}");
+            String name = (String) helper.evaluate(PROJECT_NAME_EVAL);
+            String description = (String) helper.evaluate(PROJECT_DESCRIPTION_EVAL);
 
             log.info("Retrieved Name: " + name);
             log.info("Retrieved Description: " + description);
@@ -54,12 +57,10 @@ public class MetaRule implements EnforcerRule {
         return Boolean.toString(this.namePresent) + this.descriptionPresent;
     }
 
-    @SuppressWarnings("unused") // Used by maven
     public void setNamePresent(boolean namePresent) {
         this.namePresent = namePresent;
     }
 
-    @SuppressWarnings("unused") // Used by maven
     public void setDescriptionPresent(boolean descriptionPresent) {
         this.descriptionPresent = descriptionPresent;
     }
