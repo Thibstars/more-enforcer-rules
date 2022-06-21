@@ -27,8 +27,9 @@ public class MetaRule implements EnforcerRule {
             String name = (String) helper.evaluate(PROJECT_NAME_EVAL);
             String description = (String) helper.evaluate(PROJECT_DESCRIPTION_EVAL);
 
-            log.info("Retrieved Name: " + name);
-            log.info("Retrieved Description: " + description);
+            if (nothingToEnforce()) {
+                log.warn("Nothing to enforce, please check the plugin configuration.");
+            }
 
             if (this.namePresent && (name == null || name.isBlank())) {
                 throw new EnforcerRuleException("No name is set.");
@@ -39,6 +40,10 @@ public class MetaRule implements EnforcerRule {
         } catch (ExpressionEvaluationException e) {
             throw new EnforcerRuleException("Unable to lookup an expression " + e.getLocalizedMessage(), e);
         }
+    }
+
+    private boolean nothingToEnforce() {
+        return !this.namePresent && !this.descriptionPresent;
     }
 
     @Override
