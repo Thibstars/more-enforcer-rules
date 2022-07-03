@@ -1,4 +1,4 @@
-# more-enforcer-rules #
+# more-enforcer-rules [![](https://jitpack.io/v/Thibstars/more-enforcer-rules.svg)](https://jitpack.io/#Thibstars/more-enforcer-rules) # 
 A collection of additional enforcer rules for the maven-enforcer-plugin.
 
 ## Installation ##
