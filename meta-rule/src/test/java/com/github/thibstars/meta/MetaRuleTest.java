@@ -27,12 +27,12 @@ class MetaRuleTest {
     }
 
     @Test
-    void testExecuteNamePresent() throws ExpressionEvaluationException, EnforcerRuleException {
+    void testExecuteNamePresent() throws ExpressionEvaluationException {
         metaRule.setNamePresent(true);
 
         Mockito.when(helper.evaluate(MetaRule.PROJECT_NAME_EVAL)).thenReturn("Hello");
 
-        metaRule.execute(helper);
+        Assertions.assertDoesNotThrow(() -> metaRule.execute(helper), "Execution must not throw exception.");
     }
 
     @Test
@@ -45,12 +45,12 @@ class MetaRuleTest {
     }
 
     @Test
-    void testExecuteDescriptionPresent() throws ExpressionEvaluationException, EnforcerRuleException {
+    void testExecuteDescriptionPresent() throws ExpressionEvaluationException {
         metaRule.setDescriptionPresent(true);
 
         Mockito.when(helper.evaluate(MetaRule.PROJECT_DESCRIPTION_EVAL)).thenReturn("World");
 
-        metaRule.execute(helper);
+        Assertions.assertDoesNotThrow(() -> metaRule.execute(helper), "Execution must not throw exception.");
     }
 
     @Test
