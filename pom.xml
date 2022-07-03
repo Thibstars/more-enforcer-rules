@@ -26,8 +26,8 @@
     </profiles>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
 
         <enforcer-api.version>3.1.0</enforcer-api.version>
         <maven.version>3.8.6</maven.version>
