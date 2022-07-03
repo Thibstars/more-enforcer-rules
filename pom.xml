@@ -10,6 +10,8 @@
 
     <packaging>pom</packaging>
 
+    <description>A collection of additional enforcer rules for the maven-enforcer-plugin.</description>
+
     <modules>
         <module>meta-rule</module>
         <module>rule-usage</module>
