@@ -14,8 +14,16 @@
 
     <modules>
         <module>meta-rule</module>
-        <module>rule-usage</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>usage</id>
+            <modules>
+                <module>rule-usage</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
