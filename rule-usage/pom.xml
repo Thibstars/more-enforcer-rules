@@ -17,8 +17,6 @@
     <description>Sample project triggering custom rules.</description>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <build>
