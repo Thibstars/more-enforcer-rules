@@ -1,64 +1,67 @@
 package com.github.thibstars.meta;
 
 import org.apache.maven.enforcer.rule.api.EnforcerRuleException;
-import org.apache.maven.enforcer.rule.api.EnforcerRuleHelper;
-import org.apache.maven.plugin.logging.Log;
-import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluationException;
+import org.apache.maven.project.MavenProject;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * @author Thibault Helsmoortel
  */
+@ExtendWith(MockitoExtension.class)
 class MetaRuleTest {
 
+    @InjectMocks
     private MetaRule metaRule;
 
-    private EnforcerRuleHelper helper;
-
-    @BeforeEach
-    void setUp() {
-        this.metaRule = new MetaRule();
-
-        this.helper = Mockito.mock(EnforcerRuleHelper.class);
-        Mockito.when(helper.getLog()).thenReturn(Mockito.mock(Log.class));
-    }
+    @Mock
+    private MavenProject project;
 
     @Test
-    void testExecuteNamePresent() throws ExpressionEvaluationException {
+    void testExecuteNamePresent() {
         metaRule.setNamePresent(true);
 
-        Mockito.when(helper.evaluate(MetaRule.PROJECT_NAME_EVAL)).thenReturn("Hello");
+        Mockito.when(project.getName()).thenReturn("Hello");
 
-        Assertions.assertDoesNotThrow(() -> metaRule.execute(helper), "Execution must not throw exception.");
+        Assertions.assertDoesNotThrow(() -> metaRule.execute(), "Execution must not throw exception.");
     }
 
     @Test
-    void testExecuteNameNotPresent() throws ExpressionEvaluationException {
+    void testExecuteNameNotPresent() {
         metaRule.setNamePresent(true);
 
-        Mockito.when(helper.evaluate(MetaRule.PROJECT_NAME_EVAL)).thenReturn(null);
+        Mockito.when(project.getName()).thenReturn(null);
 
-        Assertions.assertThrows(EnforcerRuleException.class, () -> metaRule.execute(helper));
+        Assertions.assertThrows(
+                EnforcerRuleException.class,
+                () -> metaRule.execute(),
+                "Execution must throw exception."
+        );
     }
 
     @Test
-    void testExecuteDescriptionPresent() throws ExpressionEvaluationException {
+    void testExecuteDescriptionPresent() {
         metaRule.setDescriptionPresent(true);
 
-        Mockito.when(helper.evaluate(MetaRule.PROJECT_DESCRIPTION_EVAL)).thenReturn("World");
+        Mockito.when(project.getDescription()).thenReturn("World");
 
-        Assertions.assertDoesNotThrow(() -> metaRule.execute(helper), "Execution must not throw exception.");
+        Assertions.assertDoesNotThrow(() -> metaRule.execute(), "Execution must not throw exception.");
     }
 
     @Test
-    void testExecuteDescriptionNotPresent() throws ExpressionEvaluationException {
+    void testExecuteDescriptionNotPresent() {
         metaRule.setDescriptionPresent(true);
 
-        Mockito.when(helper.evaluate(MetaRule.PROJECT_DESCRIPTION_EVAL)).thenReturn(null);
+        Mockito.when(project.getDescription()).thenReturn(null);
 
-        Assertions.assertThrows(EnforcerRuleException.class, () -> metaRule.execute(helper));
-    }
+        Assertions.assertThrows(
+                EnforcerRuleException.class,
+                () -> metaRule.execute(),
+                "Execution must throw exception."
+        );    }
 }

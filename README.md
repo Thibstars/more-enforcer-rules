@@ -21,7 +21,7 @@ Under the `build` tag, introduce the enforcer plugin and include the desired dep
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.3.0</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.github.thibstars.more-enforcer-rules</groupId>
@@ -38,7 +38,7 @@ Now you can add the plugin to the `plugins` tag:
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <id>enforce</id>
